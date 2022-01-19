@@ -19,78 +19,62 @@ class ViewController: UIViewController {
     @IBOutlet var buttonSetTime: UIButton!
     @IBOutlet var view3: UIView!
     @IBOutlet var labelTime: UILabel!
-    @IBOutlet var switch1: UISwitch!
+    @IBOutlet var colorChangeSwitch: UISwitch!
     @IBOutlet var buttonClear: UIButton!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
     }
-   
+
     @IBAction func sliderAction() {
         let backgroundColor = view.backgroundColor
         view.backgroundColor = backgroundColor?.withAlphaComponent(CGFloat(slider.value))
         textField.text = String(slider.value)
         progressView.setProgress(slider.value, animated: true)
     }
-   
-    @IBAction func changeTextField() {
-        guard let inputText = textField.text else {
+    
+    @IBAction func editingChanged(_ sender: Any) {
+        guard
+            let inputText = textField.text,
+            let doubleValue = Float(inputText)
+            else {
             return
         }
-// ????? как убрать курсор
-        slider.value = Float(textField.text!)!
-        progressView.setProgress(Float(textField.text!)!, animated: true)
+        slider.value = doubleValue
+        progressView.setProgress(doubleValue, animated: true)
     }
     
-    
-    @IBAction func ckickOnButtonSet() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.lo
-    }
-    
-    
-    @IBAction func changeSwitch1() {
-        let onState = switch1.isOn
-        if onState {
-            labelTime.backgroundColor = .yellow
-        } else {
-            labelTime.backgroundColor = .gray
-        }
-        
-    }
-    
-    @IBAction func clickOnButtonClear() {
-        labelTime.text = nil
-        let onState = switch1.isOn
-        if onState {
-            switch1.setOn(false, animated: true)
-        }
+    @IBAction func buttonSetTimeTapped(_ sender: Any) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        labelTime.text = formatter.string(from: datePicker.date)
     }
 
+    @IBAction func colorChangeSwithTapped() {
+        labelTime.backgroundColor = colorChangeSwitch.isOn ? .link : .lightGray
+    }
     
+    @IBAction func clearButtonTapped(_ sender: Any) {
+        labelTime.text = nil
+        colorChangeSwitch.setOn(false, animated: true)
+        colorChangeSwithTapped()
+    }
+
     func setupUI() {
         slider.value = 0.5
         slider.minimumValue = 0
         slider.maximumValue = 1
         slider.minimumTrackTintColor = .red
-        slider.maximumTrackTintColor = .blue
+        slider.maximumTrackTintColor = .link
         slider.thumbTintColor = .purple
-        
+
         progressView.setProgress(slider.value, animated: true)
-        
         textField.text = String(slider.value)
-        
-        /*
-        datePicker.date = DateFormatter(hours, minutes)
-        */
-        switch1.onTintColor = .purple
-        /*
-        labelTime.text =  String(datePicker.timeZone)
-         */
+        colorChangeSwitch.onTintColor = .purple
+        labelTime.layer.masksToBounds = true
+        labelTime.layer.cornerRadius = 8.0
+        buttonClear.layer.masksToBounds = true
+        buttonClear.layer.cornerRadius = 8.0
     }
-
 }
-

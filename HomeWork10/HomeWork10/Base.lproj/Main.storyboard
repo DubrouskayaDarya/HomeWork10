@@ -62,9 +62,9 @@
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="ldd-xo-AL7"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                                         <connections>
-                                                            <action selector="changeTextField" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Pzf-xk-6GT"/>
+                                                            <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="k8l-3j-EKP"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -87,7 +87,7 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="buttonSetAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="PUJ-KY-zfA"/>
+                                                    <action selector="buttonSetTimeTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M1A-AY-Ms3"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Jq-n8-KIV">
@@ -110,7 +110,7 @@
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3PR-S7-rSq">
                                                         <rect key="frame" x="245" y="0.0" width="51" height="31"/>
                                                         <connections>
-                                                            <action selector="switch1Action" destination="BYZ-38-t0r" eventType="valueChanged" id="dmU-PH-qDd"/>
+                                                            <action selector="colorChangeSwithTapped" destination="BYZ-38-t0r" eventType="valueChanged" id="RsF-6y-AQS"/>
                                                         </connections>
                                                     </switch>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0L3-Lq-ze4">
@@ -120,11 +120,14 @@
                                                             <constraint firstAttribute="width" constant="65" id="1uR-d0-uhm"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Clear">
-                                                            <backgroundConfiguration key="background" cornerRadius="10"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Clear" cornerStyle="dynamic">
+                                                            <backgroundConfiguration key="background" cornerRadius="7">
+                                                                <color key="backgroundColor" red="0.72252158229999996" green="0.64043745100000005" blue="0.79835724829999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="strokeColor" red="0.58188301320000002" green="0.21569153669999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </backgroundConfiguration>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="buttonClearAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="0NK-Ir-81X"/>
+                                                            <action selector="clearButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KS3-0R-KEP"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -189,13 +192,13 @@
                     <connections>
                         <outlet property="buttonClear" destination="0L3-Lq-ze4" id="BLb-Mi-tOq"/>
                         <outlet property="buttonSetTime" destination="Pfz-gf-ilZ" id="9od-9n-lFV"/>
+                        <outlet property="colorChangeSwitch" destination="3PR-S7-rSq" id="9WZ-CG-AQx"/>
                         <outlet property="datePicker" destination="C6k-aI-DHK" id="UbZ-wk-t1S"/>
                         <outlet property="labelAlarm" destination="1uJ-Hc-nEn" id="HYA-Dc-fWv"/>
                         <outlet property="labelTime" destination="pZc-nb-rBj" id="txQ-uh-lUb"/>
                         <outlet property="labelVolume" destination="zqb-04-HtZ" id="S5e-fv-E6a"/>
                         <outlet property="progressView" destination="P29-hc-j6y" id="awR-zi-DSF"/>
                         <outlet property="slider" destination="gwl-4N-KdP" id="mnX-WQ-s0U"/>
-                        <outlet property="switch1" destination="3PR-S7-rSq" id="9Zd-YB-gos"/>
                         <outlet property="textField" destination="R1R-10-cvs" id="ghh-8O-5KE"/>
                         <outlet property="view1" destination="KVE-eo-oPB" id="4yR-Bw-91K"/>
                         <outlet property="view2" destination="fpC-mQ-pXn" id="xW2-D2-3Uc"/>
